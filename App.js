@@ -38,9 +38,12 @@ function addListHtml(item) {
   let itemValue = item[1];
   let newEl = document.createElement("li");
   newEl.textContent = itemValue;
-  newEl.addEventListener("click", function () {
+  newEl.addEventListener("dblclick", function () {
     let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
     remove(exactLocationOfItemInDB);
+  });
+  newEl.addEventListener("click", function () {
+    newEl.classList.toggle("green");
   });
   shoppingListEl.append(newEl);
 }
@@ -48,5 +51,6 @@ function addListHtml(item) {
 function add() {
   const inputValue = input.value;
   push(shoppingListInDB, inputValue);
+  input.value = "";
 }
 addButton.addEventListener("click", add);
