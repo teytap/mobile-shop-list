@@ -6,6 +6,7 @@ import {
   push,
   onValue,
   remove,
+  update,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
@@ -35,22 +36,34 @@ onValue(shoppingListInDB, function (snapshot) {
 
 function addListHtml(item) {
   let itemID = item[0];
-  let itemValue = item[1];
-  let newEl = document.createElement("li");
-  newEl.textContent = itemValue;
-  newEl.addEventListener("dblclick", function () {
-    let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
-    remove(exactLocationOfItemInDB);
-  });
-  newEl.addEventListener("click", function () {
-    newEl.classList.toggle("green");
-  });
-  shoppingListEl.append(newEl);
+  let itemValue = item[1].name;
+  let checked = item[1].done;
+
+  if (itemValue) {
+    let newEl = document.createElement("li");
+    newEl.textContent = itemValue;
+    //delete function
+    newEl.addEventListener("dblclick", function () {
+      let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
+      remove(exactLocationOfItemInDB);
+    });
+    //toggle function
+    newEl.addEventListener("click", function () {
+      checked = !checked;
+      //newEl.classList.toggle("green");
+      let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`);
+      update(exactLocationOfItemInDB, { done: checked });
+    });
+
+    newEl.style.backgroundColor = checked ? "rgb(182, 227, 115)" : "#fffdf8";
+
+    shoppingListEl.append(newEl);
+  }
 }
 
 function add() {
   const inputValue = input.value;
-  push(shoppingListInDB, inputValue);
+  push(shoppingListInDB, { name: inputValue, done: false });
   input.value = "";
 }
 addButton.addEventListener("click", add);
