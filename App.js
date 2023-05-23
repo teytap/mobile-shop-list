@@ -63,7 +63,9 @@ function addListHtml(item) {
 
 function add() {
   const inputValue = input.value;
-  push(shoppingListInDB, { name: inputValue, done: false });
-  input.value = "";
+  if (inputValue) {
+    push(shoppingListInDB, { name: inputValue, done: false });
+    input.value = "";
+  }
 }
 addButton.addEventListener("click", add);
