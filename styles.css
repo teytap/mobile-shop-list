@@ -18,11 +18,13 @@ main {
 .logo {
   border-radius: 50%;
   border: 8px solid rgb(255, 119, 0);
+  border: 8px solid rgb(221, 106, 5);
+
   box-shadow: 0px 0px 10px grey;
 }
 #input,
 #add-button {
-  padding: 15px;
+  padding: 14px;
   border: none;
   border-radius: 8px;
   font-size: 20px;
@@ -36,7 +38,7 @@ main {
 #add-button {
   color: #fdfdfd;
   background-color: #ac485a;
-  background-color: rgb(255, 119, 0);
+  background-color: rgb(221, 106, 5);
 }
 /* #add-button:hover, */
 #add-button:active {
@@ -56,7 +58,7 @@ img {
   gap: 10px;
 }
 li {
-  padding: 15px;
+  padding: 14px;
   font-size: 20px;
   color: #432000;
   list-style: none;
