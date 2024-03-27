@@ -19,6 +19,7 @@ const database = getDatabase(app);
 const shoppingListInDB = ref(database, "shoppingList");
 //-----
 const input = document.getElementById("input");
+const form = document.getElementById("form");
 const addButton = document.getElementById("add-button");
 const shoppingListEl = document.getElementById("shopping-list");
 
@@ -69,3 +70,4 @@ function add() {
   }
 }
 addButton.addEventListener("click", add);
+addButton.addEventListener("submit", add);
